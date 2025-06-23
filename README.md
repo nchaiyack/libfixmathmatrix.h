@@ -28,7 +28,7 @@ IMPLIED.`
     
     - *To statically instantiate* `libfixmathmatrix_final.h` in a compilation unit, `#define LIBFIXMATHMATRIX_IMPLEMENTATION` and `#define LIBFIXMATHMATRIX_STATIC` before `#include <libfixmathmatrix_final.h>`. Note that you can therefore override configuration options (see below.)
 
-2. **Important: lookup tables you may optionally choose to compile.** *By default, but entirely optionally,* `FIXMATH_NO_CACHE` is *not* defined, and `FIXMATH_SIN_LUT` *is* defined. As a result, you'll also need to compile the source files `libfixmathmatrix_cache.c` and `libfixmathmatrix_lut.h`. You don't 
+2. **Important: lookup tables you may optionally choose to compile.** *By default, but entirely optionally,* `FIXMATH_NO_CACHE` is *not* defined, and `FIXMATH_SIN_LUT` *is* defined. As a result, you'll also need to compile the source files `libfixmathmatrix_cache.c` and `libfixmathmatrix_lut.h`.
 
 **Verification, quality, and testing.**
 
