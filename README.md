@@ -100,32 +100,6 @@ Note: will be automatically defined if `FIXMATH_OPTIMIZE_8BIT` is defined.
 - `#ifndef`: Do not optimize for processors with 8-bit multiplication like Atmel AVR. 
 - `#ifdef`: Optimize for processors like Atmel AVR.  Also defines `FIXMATH_NO_HARD_DIVISION` automatically in `fix16.h`.
 
-##### Include the `libfixmath` library in your CMake Project
-
-The simplest way to use `libfixmath` as a dependency is with CMake's [FetchContent API](https://cmake.org/cmake/help/latest/module/FetchContent.html).
-
-```cmake
-include(FetchContent)
-FetchContent_Declare(
-    libfixmath
-    GIT_REPOSITORY https://github.com/PetteriAimonen/libfixmath.git
-    GIT_TAG <the long git hash of the version you want>
-)
-FetchContent_MakeAvailable(libfixmath)
-
-target_compile_definitions(libfixmath PRIVATE
-    # FIXMATH_FAST_SIN
-    # FIXMATH_NO_64BIT
-    # FIXMATH_NO_CACHE
-    # FIXMATH_NO_HARD_DIVISION
-    # FIXMATH_NO_OVERFLOW
-    # FIXMATH_NO_ROUNDING
-    # FIXMATH_OPTIMIZE_8BIT
-)
-
-target_link_libraries(my_cmake_project PRIVATE libfixmath)
-```
-
 ### Fixed point matrix library
 
 Libfixmatrix is a matrix computation library for microcontrollers.
@@ -134,19 +108,12 @@ The main focus is processors without an FPU, such as ARM Cortex-M3.
 The compiled size of the library is less than 5 kB, depending on optimization settings and processor.
 
 The library includes all basic matrix operations, such as multiplication, addition and transposition.
-Matrix equation solving (and matrix inversion) is implemented through `QR decomposition`_.
-Also `Cholesky decomposition`_ is included. See `function reference`_ for details.
+Matrix equation solving (and matrix inversion) is implemented through `QR decomposition`.
+Also `Cholesky decomposition` is included. See `function reference` for details.
 
 To avoid complexity and dynamic memory allocations, all matrices are allocated a buffer with constant size, specified with parameter 
 `FIXMATRIX_MAX_SIZE`. This wastes some memory with matrices smaller than the maximum size, but allows more predictable memory usage.
 
 Libfixmatrix is suited well for tasks involving small matrices (often less than 10x10):
-`Kalman filters`_, `transformation matrices`_ and solving `systems of linear equations`_.
+`Kalman filters`, `transformation matrices` and solving `systems of linear equations`.
 
-.. _libfixmath: http://code.google.com/p/libfixmath/
-.. _QR decomposition: http://en.wikipedia.org/wiki/QR_decomposition
-.. _Cholesky decomposition: http://en.wikipedia.org/wiki/Cholesky_decomposition
-.. _function reference: https://github.com/PetteriAimonen/libfixmatrix/blob/master/FUNCTIONS.rst
-.. _Kalman filters: http://en.wikipedia.org/wiki/Kalman_filter
-.. _transformation matrices: http://en.wikipedia.org/wiki/Transformation_matrix
-.. _systems of linear equations: http://en.wikipedia.org/wiki/System_of_linear_equations
